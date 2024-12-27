@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>註冊網址推薦</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000; /* 设置背景为黑色 */
+            color: #fff; /* 设置文本颜色为白色 */
+        }
+
+        h1 {
+            text-align: center; /* 标题居中 */
+            color: white; /* 白色文字 */
+            background-color: #333; /* 深灰色背景 */
+            padding: 20px 0; /* 上下填充20px */
+            margin: 0 0 20px 0; /* 底部外边距20px */
+            font-size: 32px; /* 字体大小 */
+            width: 100%; /* 宽度占满整行 */
+        }
+
+        audio {
+            width: 100%; /* 确保音乐播放器宽度自适应 */
+            max-width: 600px; /* 最大宽度限制，避免在大屏幕上过宽 */
+            height: auto; /* 高度自适应 */
+            background-color: #333; /* 播放器背景颜色 */
+            color: white; /* 播放器控件颜色 */
+            display: block; /* 块级元素，占满一行 */
+            margin: 0 auto; /* 水平居中显示 */
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .box {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 20px;
+            flex: 1 1 300px; /* Flex item可以增长和收缩到300px */
+        }
+
+        @media (max-width: 600px) {
+            .box {
+                flex: 1 1 100%; /* 在小屏幕上，box占满整个容器宽度 */
+            }
+        }
+
+        .decorative-border {
+            border: none; /* 示例中移除边框，依据设计需要调整 */
+        }
+    </style>
+</head>
+<body>
+    <h1>急速ATM速度正出</h1> <!-- 新增的大标题 -->
+    <audio src="test.mp3" controls></audio>
+    <div class="container">
+        <div class="box decorative-border">
+            <h2 style="font-weight: bold;">88win</h2>
+            <a href="https://88win4.com/Register/?code=E37C82" class="intro-link"><img src="https://i.ibb.co/8XwH4j6/8852.jpg" alt="點我註冊" /></a>
+            <p>點圖註冊</p>
+            <p>介紹:</p>
+            <p>88WIN</p>
+            <p>新會員體驗金</p>
+            <p>電子首存500起一倍水</p>
+            <p>每日/週彩金外加神秘彩金大放送</p>
+        </div>
+        <div class="box decorative-border">
+            <h2 style="font-weight: bold;">You888</h2>
+            <a href="https://you888a.com/Register/?code=D163F9" class="intro-link"><img src="https://i.ibb.co/QDCHvqw/8851.jpg" alt="點我註冊" /></a>
+            <p>點圖註冊</p>
+            <p>介紹:</p>
+            <p>YOU888</p>
+            <p>新會員體驗金</p>
+            <p>電子首存500送238</p>
+            <p>神秘彩金等多重大禮等你註冊領取</p>
+        </div>
+        <div class="box decorative-border">
+            <h2 style="font-weight: bold;">9M</h2>
+            <a href="https://9mbet01.com/1746/user-login?promotionId=agent001"><img src="https://i.ibb.co/GPDL4Vj/8850.jpg" alt="點我註冊" /></a>
+            <p>點圖註冊</p>
+            <p>介紹:</p>
+            <p>9M</p>
+            <p>新會員體驗金</p>
+            <p>首存1000送888</p>
+            <p>玩超過3000水在存再送</p>
+        </div>
+        <div class="box decorative-border">
+            <h2 style="font-weight: bold;">78ok</h2>
+            <a href="https://78ok1.com/Register/?code=C170E8"><img src="https://i.ibb.co/nnnnBpM/8853.jpg" alt="點我註冊" /></a>
+            <p>點圖註冊</p>
+            <p>介紹:</p>
+            <p>78ok</p>
+            <p>新會員體驗金</p>
+            <p>電子首存500送238</p>
+            <p>每日紅包神秘彩金大禮等你來體驗</p>
+        </div>
+    </div>
+</body>
+</html>

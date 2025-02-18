@@ -1,0 +1,93 @@
+import random
+import json
+from flask import Flask, request, jsonify
+
+# 建立 Flask 伺服器
+app = Flask(__name__)
+
+# 百家樂遊戲數據
+history = []
+
+def calculate_points(cards):
+    """ 計算手牌點數 """
+    points = sum(1 if card.upper() == 'A' else int(card) if card.isdigit() and 2 <= int(card) <= 9 else 0 for card in cards) % 10
+    return points
+
+def calculate_betting_value(cards):
+    """ 計算賦予值: 小牌(A,2,3,4) +1, 大牌(5,6,7,8) +3, 9-K不計入 """
+    value = sum(1 if card.upper() in ['A', '2', '3', '4'] else 3 if card.upper() in ['5', '6', '7', '8'] else 0 for card in cards)
+    return value
+
+def record_result(player_cards, banker_cards):
+    """ 記錄本局結果並更新數據 """
+    global history
+    
+    player_points = calculate_points(player_cards)
+    banker_points = calculate_points(banker_cards)
+    
+    player_value = calculate_betting_value(player_cards)
+    banker_value = calculate_betting_value(banker_cards)
+    
+    total_value = player_value + banker_value
+    
+    if banker_points > player_points:
+        result = "莊"
+    elif player_points > banker_points:
+        result = "閒"
+    else:
+        result = "和"
+    
+    history.append((result, total_value))
+    return result, total_value
+
+def predict_next_round():
+    """ 預測下一局結果 """
+    last_value = history[-1][1] if history else 0
+    if last_value >= 5:
+        return "莊"  # 下莊
+    elif last_value <= 4:
+        return "閒"  # 下閒
+    else:
+        return "無法確定"
+
+def parse_input(input_str):
+    """ 將輸入字串解析為單獨的卡片 """
+    return list(input_str.strip().upper())
+
+@app.route("/predict", methods=["POST"])
+def predict():
+    """ 接收莊/閒家的手牌並計算結果 """
+    data = request.json
+    if "banker" not in data or "player" not in data:
+        return jsonify({"error": "請提供莊家和閒家的手牌"}), 400
+    
+    banker_cards = parse_input(data["banker"])
+    player_cards = parse_input(data["player"])
+    
+    result, total_value = record_result(player_cards, banker_cards)
+    prediction = predict_next_round()
+    round_number = len(history)
+    
+    response = {
+        "round": round_number,
+        "banker": "".join(banker_cards),
+        "player": "".join(player_cards),
+        "result": result,
+        "bet_value": total_value,
+        "next_prediction": prediction
+    }
+    return jsonify(response)
+
+@app.route("/clear", methods=["POST"])
+def clear_history():
+    """ 清空歷史紀錄 """
+    history.clear()
+    return jsonify({"message": "歷史紀錄已清空"})
+
+@app.route("/history", methods=["GET"])
+def get_history():
+    """ 獲取歷史紀錄 """
+    return jsonify(history)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
